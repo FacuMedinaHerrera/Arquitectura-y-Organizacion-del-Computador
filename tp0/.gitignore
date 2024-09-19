@@ -1,0 +1,6 @@
+*.o
+main
+main.txt
+test
+salida.propios.txt
+.gdb_history

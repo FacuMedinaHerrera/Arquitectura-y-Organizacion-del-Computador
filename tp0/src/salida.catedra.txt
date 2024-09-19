@@ -1,0 +1,65 @@
+Nombre del producto, Precio, Moneda, Stock
+Fractal Design Core 500, 1110, ARG, 1892
+Fractal Design Define Mini C, 3684, USD, 966
+Kingston A2000 1TB, 572, ARG, 1939
+Thermalright AXP-100, 3272, ARG, 105
+Corsair Vengeance LPX 8GB, 2438, USD, 1641
+Asrock B450 Steel Legend, 716, ARG, 115
+Samsung 860 QVO 1TB, 1159, ARG, 1563
+Patriot Burst 480GB, 1769, ARG, 1105
+Western Digital Green 2TB, 3525, ARG, 299
+MSI GTX 1080 Ti, 562, USD, 1279
+Lian Li Lancool II, 1487, USD, 1298
+Seasonic Prime Ultra 750W, 3669, USD, 1098
+NZXT H710, 2372, USD, 683
+Corsair RM850x, 1220, USD, 236
+Nvidia GTX 1650, 1422, USD, 451
+Seagate IronWolf 4TB, 2119, ARG, 1833
+AMD Radeon RX 5600 XT, 498, USD, 1295
+Asus Prime B450M-A, 653, USD, 1229
+Samsung 970 Pro 512GB, 1996, USD, 875
+Corsair RM850x, 2682, ARG, 186
+MSI MPG Z390 Gaming Edge AC, 1419, USD, 2010
+Thermalright Le Grand Macho RT, 1184, USD, 1963
+MSI RX 570 Armor, 3450, USD, 1576
+Zotac GTX 1050 Ti, 1629, ARG, 498
+Asus TUF Gaming X570-Plus, 1055, ARG, 1763
+Sapphire RX Vega 64, 1155, ARG, 1787
+AMD Ryzen 5 3600, 495, USD, 1109
+Thermaltake Toughpower PF1 850W, 1779, USD, 483
+Lian Li PC-TU150, 2718, ARG, 188
+Nvidia RTX 3090, 1770, USD, 326
+Seagate SkyHawk 2TB, 3604, ARG, 992
+G.Skill Sniper X 16GB, 3234, USD, 124
+Sapphire RX 590 Nitro+, 7, USD, 524
+PowerColor RX 580 Red Devil, 2231, USD, 706
+Thermalright Silver Arrow IB-E, 1580, ARG, 1025
+MSI RTX 2080 Ti Gaming X Trio, 1060, ARG, 84
+Kingston HyperX Fury 16GB, 133, ARG, 1572
+Intel Core i7 9700K, 2203, ARG, 2040
+Noctua NH-L9i, 639, USD, 708
+Sapphire RX Vega 64, 4, ARG, 795
+Nvidia RTX 2080 Ti, 561, USD, 733
+EVGA SuperNOVA 750 G3, 1598, ARG, 488
+PowerColor RX 5700 XT Red Devil, 3742, USD, 537
+EVGA SuperNOVA 750 G3, 35, ARG, 1511
+Sapphire RX 5700 XT Nitro+, 3294, ARG, 1512
+MSI GTX 1050, 3789, USD, 909
+Samsung 860 QVO 1TB, 1080, USD, 449
+Gigabyte Z490 Vision G, 2600, ARG, 1910
+Western Digital Blue 1TB, 247, ARG, 580
+Asus ROG Strix Z390-E, 3174, USD, 1370
+Patriot Burst 480GB, 597, USD, 927
+Kingston KC2000 1TB, 1057, ARG, 302
+MSI RTX 2080 Super, 3986, USD, 1454
+Asrock B365M Pro4, 3099, USD, 611
+Noctua NH-D15, 1830, ARG, 920
+Noctua NH-U12A, 1791, USD, 563
+PowerColor RX 560 Red Dragon, 3107, ARG, 1530
+Asrock TRX40 Taichi, 1591, USD, 1951
+Thermalright Le Grand Macho RT, 3449, USD, 1272
+Gigabyte Z490 Vision G, 3715, ARG, 1225
+AMD Ryzen 5 3600, 3148, USD, 1280
+Crucial P5 1TB, 726, USD, 1946
+Fractal Design Core 500, 121, USD, 0
+Corsair VS550, 1024, ARG, 0
