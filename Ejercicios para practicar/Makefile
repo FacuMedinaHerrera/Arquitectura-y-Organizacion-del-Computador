@@ -1,35 +1,26 @@
 CFLAGS += -std=c11 -Wall -Wextra -O0 -ggdb -lm -Wno-unused-variable -Wno-unused-parameter -no-pie
-CC:=gcc
+CC:=cc
 NASM:=nasm
 NASMFLAGS:=-f elf64 -g -F DWARF
-TARGETS:= test_ej1
+
 #Regla Principal
-all: $(TARGETS)
-#Regla para ejecutar los tests
-RUN := $(patsubst %,run_%, $(TARGETS))
+all: test_ej1
+
 #Limpieza
 clean:
-	rm -f *.o $(TARGETS)
-#chequeo de errores de memoria
-$(RUN): run_%: % 
-	valgrind --show-reachable=yes --leak-check=full --error-exitcode=1 ./$* \
-	&& echo "No se detectaron errores de memoria" 
+	rm -f *.o test_ej1
 #compilacion de c y ensamblado de ASM
 
-test_ej1: test_ej1.o ej1_asm.o ej1.o 
+test_ej1: test_ej1.o ej1.o ej1_asm.o 
 	$(CC) $(CFLAGS) $^ -o $@
 
 #Reglas para generar los archivos objeto
-test_ej1.o: test_ej1.c
+test_ej1.o: test_ej1.c ej1.h
 	$(CC) $(CFLAGS) $< -o $@
-ej1.o: ej1.c
+ej1.o: ej1.c ej1.h
 	$(CC) $(CFLAGS) $< -o $@
 ej1_asm.o: ej1_asm.asm
 	$(NASM) $(NASMFLAGS) $< -o $@
-.PHONY: all clean $(RUN)
-
-
-
 # Pequeña guia de Makefile:
 #    Se declara variables con NOMBRE_VARIABLE := declaración o NOMBRE_VARIABLE += declaración
 #    Se utiliza variables declaradas mediante $(NOMBRE_VARIABLE)
