@@ -2,3 +2,4 @@
 # menos los archivos de codigo
 *.gdb_history
 *.o
+test_ej1
