@@ -9,6 +9,7 @@ all: test_ej1
 #Limpieza
 clean:
 	rm -f *.o test_ej1
+	rm -f .gdb_history
 #compilacion de c y ensamblado de ASM
 
 test_ej1: test_ej1.o ej1.o ej1_asm.o 
