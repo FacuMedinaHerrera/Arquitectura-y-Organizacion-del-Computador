@@ -22,6 +22,8 @@ int main(){
     ans=cesarCodSimple(string,32);
     ans_asm=codificationCesar(string,32);
     printf("(%s,32)\n--->Expected:'VRGTZOTM' Actual:'%s')\n",string,ans_asm);
+    printf("Now using asm\n");
+    printf("(%s,3)\n--->Expected: 'VRGTZOTM' Actual:'%s')\n",string,ans_asm);
 
     exit(0);
 }

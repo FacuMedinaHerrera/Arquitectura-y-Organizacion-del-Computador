@@ -25,7 +25,7 @@ codificationCesar:
     push r14
     ;pushing 2 non volatile registers to save frase and x
     mov rbx, rdi
-    mov r12d,esi
+    mov r12b,sil
     
     call strlen
     ;I recieve frase's length via RAX register
@@ -34,22 +34,22 @@ codificationCesar:
     call malloc
     ;now I have a pointer to reserved memory for my string
     mov r13,rax ;copy the pointer so I don't lose it
-
+    mov r14,rax
     .loop:
-        cmp [rbx],dword 0
+        cmp [rbx],byte 0
         je .fin
-        mov rdi,[rbx]
+        mov dil,byte [rbx]
         call ord
-        add eax, r12d
-        mov edi, eax
+        add al, r12b
+        mov dil, al
         call chr
-        mov [r13],rax
+        mov [r13],al
         inc rbx
         inc r13
         jmp .loop
     .fin:
-    mov [r13],dword 0 ;end of string
-    mov rax, r13 ;return register
+    mov [r13],byte 0 ;end of string
+    mov rax, r14 ;return register
     pop r14
     pop r13
     pop r12

@@ -16,9 +16,9 @@ test_ej1: test_ej1.o ej1.o ej1_asm.o
 
 #Reglas para generar los archivos objeto
 test_ej1.o: test_ej1.c ej1.h
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -c $@
 ej1.o: ej1.c ej1.h
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -c $@
 ej1_asm.o: ej1_asm.asm
 	$(NASM) $(NASMFLAGS) $< -o $@
 # Pequeña guia de Makefile:
