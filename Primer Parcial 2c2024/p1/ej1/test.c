@@ -50,15 +50,18 @@ const char* nombre_comparador[] = {
 };
 
 bool test_comparar_por_nombre(item_t* a, item_t* b) {
-	return strcmp(a->nombre, b->nombre) <= 0;
+	bool res=strcmp(a->nombre, b->nombre) <= 0;
+	return res;
 }
 
 bool test_comparar_por_fuerza(item_t* a, item_t* b) {
-	return b->fuerza <= a->fuerza;
+	bool res=b->fuerza <= a->fuerza;
+	return res;
 }
 
 bool test_comparar_por_durabilidad(item_t* a, item_t* b) {
-	return a->durabilidad <= b->durabilidad;
+	bool res=a->durabilidad <= b->durabilidad;
+	return res;
 }
 
 bool test_comparar_por_nombre_desempatar_por_durabilidad(item_t* a, item_t* b) {

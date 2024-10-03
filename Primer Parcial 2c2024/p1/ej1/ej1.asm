@@ -2,6 +2,11 @@ extern malloc
 
 section .rodata
 ; Acá se pueden poner todas las máscaras y datos que necesiten para el ejercicio
+%define TAM_ITEM_T  28			;2 de padding al final de la estructura para que queda alineado a 4 bytes
+%define NOMBRE_OFFSET 0
+%define FUERZA_OFFSET 20		;hay 2 de padding para que este alineado a 4 bytes
+%define DURABILIDAD_OFFSET 24
+
 
 section .text
 ; Marca un ejercicio como aún no completado (esto hace que no corran sus tests)
@@ -21,7 +26,7 @@ EJERCICIO_1A_HECHO: db FALSE ; Cambiar por `TRUE` para correr los tests.
 ; Funciones a implementar:
 ;   - indice_a_inventario
 global EJERCICIO_1B_HECHO
-EJERCICIO_1B_HECHO: db FALSE ; Cambiar por `TRUE` para correr los tests.
+EJERCICIO_1B_HECHO: db TRUE ; Cambiar por `TRUE` para correr los tests.
 
 ;; La funcion debe verificar si una vista del inventario está correctamente 
 ;; ordenada de acuerdo a un criterio (comparador)
@@ -52,11 +57,58 @@ es_indice_ordenado:
 	; ubicación según la convención de llamada. Prestá atención a qué
 	; valores son de 64 bits y qué valores son de 32 bits o 8 bits.
 	;
-	; r/m64 = item_t**     inventario
-	; r/m64 = uint16_t*    indice
-	; r/m16 = uint16_t     tamanio
-	; r/m64 = comparador_t comparador
-		ret
+	; r/m64 = item_t**     inventario	[rdi]
+	; r/m64 = uint16_t*    indice		[rsi]
+	; r/m16 = uint16_t     tamanio		[rdx]
+	; r/m64 = comparador_t comparador	[rcx]
+	;
+	push rbp
+	mov rbp, rsp
+	push rbx
+	push r12
+	push r13
+	push r14
+	
+;dejo armado el prologo alineado.
+	mov rbx,rdi				;inventario
+	mov r12,rsi				;indice
+	mov r13,rdx				;tamanio
+	mov r14,rcx				;comparador
+;me copio mis datos a registros no volatiles para no perderlos al hacer el llamado al comparador
+	
+	
+	.ciclo:
+		mov rax, qword 1	;asumo que es verdadero en un principio, si es falso cambio valor y salgo
+		cmp r13w,word 1		;comparo en tamanio word porque no se si el resto tiene basura y comparo con 1 ya que si no, indexo erroneamente
+		je .fin
+		xor rdi,rdi
+		xor rsi,rsi			;limpio los registros para no usar datos basura
+		xor rdx,rdx
+		xor rcx,rcx
+		mov dx,[r12]		;indice[i]
+		mov cx,[r12+2]		;indice[i+1] Es +2 ya que cada entero es de 2 bytes 
+		mov rdi,[rbx+rdx*8]	;pongo en rdi inventario[indice[i]]. Se multiplica x8 porque cada posicion tiene tamanio de puntero.
+		mov rsi,[rbx+rcx*8]	;pongo en rsi inventario[indice[i+1]]
+		call r14			;llamo a comparador(inventario[indice[i]],inventario[indice[i+1]])
+		cmp al,byte 0		;es false?
+		je .false
+		add r12,2
+		dec r13w
+		jmp .ciclo
+
+
+		.false:
+				mov rax,qword 0
+				jmp .fin
+	
+	.fin:
+	
+	pop r14
+	pop r13	
+	pop r12
+	pop rbx	
+	pop rbp
+	ret
 
 ;; Dado un inventario y una vista, crear un nuevo inventario que mantenga el
 ;; orden descrito por la misma.
@@ -84,7 +136,45 @@ indice_a_inventario:
 	; ubicación según la convención de llamada. Prestá atención a qué
 	; valores son de 64 bits y qué valores son de 32 bits o 8 bits.
 	;
-	; r/m64 = item_t**  inventario
-	; r/m64 = uint16_t* indice
-	; r/m16 = uint16_t  tamanio
+	; r/m64 = item_t**  inventario	[rdi]
+	; r/m64 = uint16_t* indice		[rsi]
+	; r/m16 = uint16_t  tamanio		[rdx]
+	push rbp
+	mov rbp,rsp
+	push rbx
+	push r12
+	push r13
+	push r14
+;pila alineada
+	mov rbx,rdi
+	mov r12,rsi
+	mov r13,rdx
+
+	shl r13w,3 		;multiplico por 8 el tamanio para pedir memoria correctamente
+	xor rdi,rdi
+	mov di,r13w
+	shr r13w,3		;restauro el tamanio para iterar correctamente
+	call malloc		;memoria reservada para resultado
+	mov r14,rax	;	guardo el puntero de resultado
+
+	.loop:
+		cmp r13w,word 0
+		je .end
+		xor rdi,rdi				;limpio registros
+		xor rsi,rsi
+		mov di, [r12]			;indice[i]	
+		mov rsi,[rbx+rdi*8]		;inventario[indice[i]]
+		mov [r14],rsi			;resultado[i]=riventario[indice[i]]
+		
+		add r14,8				;8 por el tamanio de punteros a items
+		add r12,2
+		dec r13w
+		jmp .loop
+
+	.end:
+	pop r14
+	pop r13
+	pop r12
+	pop rbx
+	pop rbp
 	ret
